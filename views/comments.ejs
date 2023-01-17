@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Comments</title>
+  </head>
+  <body>
+    <h1>All Comments</h1>
+    <a href="comments/newComment">Create New Comment</a>
+    <ul>
+      <% for( let comment of result) { %>
+      <li>
+        <form
+          method="post"
+          action="/comments/edit/<%= comment.id %>?_method=PATCH"
+          style="display: inline"
+        >
+          <input
+            type="text"
+            name="newComment"
+            id="comment"
+            value="<%= comment.comments %>"
+            class="comment-box"
+            disabled
+          />
+          - <small><b><%= comment.name %> </b></small>
+          <button class="edit" type="button">Edit</button>
+        </form>
+        <form
+          action="/comments/delete/<%= comment.id %>?_method=DELETE"
+          method="post"
+          style="display: inline"
+        >
+          <button>Delete</button>
+        </form>
+      </li>
+      <% } %>
+    </ul>
+    <script
+      src="https://kit.fontawesome.com/3a2330b33b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/script.js"></script>
+  </body>
+</html>
